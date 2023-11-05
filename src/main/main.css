@@ -1,0 +1,9 @@
+.main {
+  display: flex;
+  gap: 8px;
+  padding: 16px;
+}
+
+.list-item {
+  flex: 1;
+}
