@@ -1,0 +1,17 @@
+.error-description {
+  height: 100vh;
+  display: flex;
+  padding: 16px;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.error-description > h2 {
+  margin: 0px;
+}
+
+.error-description > span:last-of-type {
+  color: rgb(0 0 0 / 40%);
+}

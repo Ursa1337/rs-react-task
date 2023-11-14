@@ -1,0 +1,32 @@
+.description-block{
+  overflow: hidden;
+  width: 100%;
+  max-width: 0px;
+  transition: .15s max-width ease-in-out;
+}
+
+.description-block-show {
+  max-width: 196px;
+}
+
+.close-description {
+  background: #fff;
+  border: 1px solid #000;
+  cursor: pointer;
+  padding: 8px 32px;
+  border-radius: 4px;
+}
+
+.description-main {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  border: 1px solid rgb(0 0 0 / 20%);
+  border-radius: 4px;
+  min-height: 64px;
+}
+
+.description-main > h2 {
+  margin: 0px;
+}
