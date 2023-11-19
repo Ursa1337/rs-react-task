@@ -1,23 +1,23 @@
-import { useContext } from 'react';
-import { SearchContext } from '../../contexts';
+import { useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
+import { RootState } from '../../redux';
 import './Pagination.css'
 
 export const Pagination = () => {
   const navigate = useNavigate();
-  const context = useContext(SearchContext);
+  const search = useSelector((state: RootState) => state.search);
 
-  const countPage = Math.ceil(context!.state.itemsCount / context!.state.count);
+  const countPage = Math.ceil(search.itemsCount / search.count);
 
   const getNavigationRange = () => {
-    const spread = Math.floor(context!.state.count / 2);
-    const start = Math.max(context!.state.currentPage - spread, 0);
-    const end = Math.min(context!.state.currentPage + spread, countPage);
+    const spread = Math.floor(5 / 2);
+    const start = Math.max(search.currentPage - spread, 0);
+    const end = Math.min(search.currentPage + spread, countPage);
     return new Array(Math.abs(end - start)).fill(null).map((_, i) => start + i)
   }
 
   const getPageLink = (page: number, count: number) => {
-    return `/${context!.state.search}?page=${page}&count=${count}`;
+    return `/${search.request}?page=${page}&count=${count}`;
   }
 
   const setCount = (count: number) => {
@@ -25,14 +25,14 @@ export const Pagination = () => {
   }
 
   const setPage = (page: number) => {
-    navigate(getPageLink(page, context!.state.count));
+    navigate(getPageLink(page, search.count));
   }
 
   return (
     <div className='button-pagination-wrapper'>
       <div className='pagination-wrapper'>
         {
-          context!.state.currentPage !== 0 && (
+          search.currentPage !== 0 && (
             <button
               className='button-pagination-back'
               onClick={() => setPage(0)}
@@ -45,9 +45,9 @@ export const Pagination = () => {
           getNavigationRange().map((i) => {
             return (
               <Link
-                key={'paginationButto' + i}
+                key={'paginationButton' + i}
                 className='pagination-item'
-                to={getPageLink(i, context!.state.count)}
+                to={getPageLink(i, search.count)}
               >
                 {i + 1}
               </Link>
@@ -55,7 +55,7 @@ export const Pagination = () => {
           })
         }
         {
-          context!.state.currentPage !== (countPage - 1) && (
+          search.currentPage !== (countPage - 1) && (
             <button
               className='button-pagination-next'
               onClick={() => setPage(countPage - 1)}

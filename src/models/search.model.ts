@@ -1,7 +1,7 @@
 export interface SearchResult {
   count: number;
-  next: number | null;
-  previous: null | null;
+  next: string | null;
+  previous: string | null;
   results: ResultItem[];
 }
 

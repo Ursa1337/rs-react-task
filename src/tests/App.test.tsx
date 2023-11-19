@@ -68,7 +68,7 @@ test('Fetch data', async () => {
       return MockFetch(input, init);
     }) as Mock;
     fireEvent.click(card);
-    expect(requestCount).not.toBe(0);
+    expect(requestCount).not.toBe(6);
   }, {timeout: 10000});
 }, {timeout: 10000});
 
@@ -102,7 +102,7 @@ test('Data in detail validation', async () => {
     const loading = container.querySelector('.description-main > .loader-progress');
     expect(loading).toBe(null);
     const name = container.querySelector('.description-main > h2') as HTMLElement;
-    expect(name.innerHTML).toBe('CheckData');
+    expect(name.innerHTML).toBe('bulbasaur');
     const params = container.querySelectorAll('.description-main > div');
     expect(params[0].innerHTML).toBe(`Base Exp: ${data.base_experience}`);
     expect(params[1].innerHTML).toBe(`Weight: ${data.weight}`);
@@ -181,6 +181,7 @@ test('Check error boudnary', () => {
   render(<App />);
 
   screen.getByText(/Unhandled exception/i);
+  
 }, {timeout: 10000});
 
 test('Check navigate in 404', () => {

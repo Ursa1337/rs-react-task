@@ -36,11 +36,7 @@ export class ErrorBoundary extends React.Component<
   }
 
   closeError() {
-    this.setState({
-      error: false,
-      text: '',
-      stack: '',
-    });
+    
   }
 
   render() {

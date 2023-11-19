@@ -1,12 +1,13 @@
-import { useContext, useRef } from 'react';
+import { useSelector } from 'react-redux';
+import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SearchContext } from '../../contexts';
+import { RootState } from '../../redux';
 import './Header.css';
 
 export const Header = () => {
   const navigation = useNavigate();
-  const context = useContext(SearchContext);
   const inputRef = useRef<HTMLInputElement>(null);
+  const search = useSelector((state: RootState) => state.search);
 
   const searchItemHandler = () => {
     localStorage.setItem('search', inputRef.current!.value);
@@ -20,7 +21,7 @@ export const Header = () => {
         <span className='text-field'>
           <input
             ref={inputRef}
-            defaultValue={context!.state.search}
+            defaultValue={search.request}
             id='search-input'
             type='text'
             required
