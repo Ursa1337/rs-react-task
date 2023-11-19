@@ -18,11 +18,11 @@ export const pokemonApi = createApi({
     getPokemon: builder.query<SearchResult, RTKSearchType>({
       query: (params: RTKSearchType) => params.request,
       transformResponse: (rawData: SearchResult, _, args) => {
+        const data = rawData.results.filter((v) => v.name.includes(args.search));
         return {
           ...rawData,
-          results: rawData.results.filter((v) => 
-            v.name.includes(args.search)
-          ).slice(
+          count: data.length,
+          results: data.slice(
             args.count * args.currentPage,
             args.count * (args.currentPage + 1),
           )
