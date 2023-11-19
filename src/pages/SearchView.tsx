@@ -34,7 +34,6 @@ const SearchViewWrapper = () => {
   });
 
   useEffect(() => {
-    console.log(data?.count)
     dispatch(
       set({
         items: data?.results || [],

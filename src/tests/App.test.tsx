@@ -178,10 +178,11 @@ test('404 page', () => {
 
 test('Check error boudnary', () => {
   window.history.pushState({}, '', '/error');
-  render(<App />);
+  const { container } = render(<App />);
 
   screen.getByText(/Unhandled exception/i);
-  
+  fireEvent.click(container.querySelector('button') as HTMLButtonElement);
+  expect(window.location.pathname).toBe('/')
 }, {timeout: 10000});
 
 test('Check navigate in 404', () => {
@@ -206,3 +207,16 @@ test('Pagination by num page',  async () => {
 
   expect(window.location.search).not.toBe('');
 }, {timeout: 10000});
+
+test('Pagination count by page', async () => {
+  window.history.pushState({}, '', '/pikachu');
+  const { container } = render(<App />);
+
+  await waitFor(() => {
+    const button = container.querySelector('.pagination-item') as HTMLElement;
+    expect(button).not.toBe(null);
+  }, {timeout: 10000});
+
+  fireEvent.click(container.querySelectorAll('.button-pagination-set')[1] as HTMLButtonElement);
+  expect(location.href).contain('count=10');
+});

@@ -1,8 +1,10 @@
 import React from 'react';
+import { NavigateOptions, To } from 'react-router-dom';
 import './ErrorBoundary.css';
 
 interface PropsType {
   children: React.ReactNode;
+  navigate: (to: To, options?: NavigateOptions) => void;
 }
 
 interface StateType {
@@ -36,7 +38,12 @@ export class ErrorBoundary extends React.Component<
   }
 
   closeError() {
-    
+    this.props.navigate('/');
+    this.setState({
+      error: false,
+      text: '',
+      stack: ''
+    });
   }
 
   render() {
