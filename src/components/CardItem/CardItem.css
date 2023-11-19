@@ -1,0 +1,31 @@
+.card-pokemon {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: 48px;
+  gap: 8px;
+  padding: 8px;
+  border-color: rgb(0 0 0 / 20%);
+  border-width: 1px;
+  border-style: none solid solid solid;
+}
+
+.card-pokemon:first-of-type {
+  border-style: solid;
+  border-radius: 4px 4px 0px 0px;
+}
+
+.card-pokemon:last-of-type {
+  border-radius: 0px 0px 4px 4px;
+}
+
+.card-pokemon > img {
+  width: 32px;
+}
+
+.pokemon-stats {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+  color: rgb(0 0 0 / 40%);
+}
