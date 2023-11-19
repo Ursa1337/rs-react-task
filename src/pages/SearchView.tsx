@@ -23,11 +23,12 @@ const SearchViewWrapper = () => {
   const count = Number(new URLSearchParams(location.search).get('count')) || 5;
   const currentPage = Number(new URLSearchParams(location.search).get('page')) || 0;
   const detail = Number(new URLSearchParams(location.search).get('detail')) || 0;
-  const request = params.search || localStorage.getItem('search') || '';
+  const search = params.search || '';
   const id = Number(params.id) || 0;
 
   const { data, isLoading } = useGetPokemonQuery({
     request: '/pokemon?limit=9999',
+    search: search,
     currentPage: currentPage,
     count: count,
   });
@@ -49,10 +50,10 @@ const SearchViewWrapper = () => {
         count: count,
         id: id,
         detail: detail,
-        request: request,
+        request: search,
       })
     );
-  }, [request, currentPage, count, id, detail])
+  }, [search, currentPage, count, id, detail])
 
   return (
     <>

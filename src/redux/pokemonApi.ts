@@ -3,6 +3,7 @@ import { PokemonDescription, SearchResult } from '../models';
 
 interface RTKSearchType {
   request: string;
+  search: string;
   count: number;
   currentPage: number;
 }
@@ -19,7 +20,9 @@ export const pokemonApi = createApi({
       transformResponse: (rawData: SearchResult, _, args) => {
         return {
           ...rawData,
-          results: rawData.results.slice(
+          results: rawData.results.filter((v) => 
+            v.name.includes(args.search)
+          ).slice(
             args.count * args.currentPage,
             args.count * (args.currentPage + 1),
           )
